@@ -18,7 +18,7 @@ A **Django REST API** for a pet adoption system with role-based authentication (
 ## **Installation**
 ### **1. Clone the Repository**
 ```sh
-git clone https://github.com/yourusername/pet_adoption_system.git
+git clone <repository url>
 cd pet_adoption_system
 ```
 
@@ -87,10 +87,6 @@ Access API docs at: `http://127.0.0.1:8000/swagger/`
 ### **Run Pylint to Check Code Quality**
 ```sh
 pylint adoption
-```
-### **Auto-fix Formatting with Black**
-```sh
-black .
 ```
 
 ---
