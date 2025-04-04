@@ -1,115 +1,135 @@
+
 # Pet Adoption System
 
-## 📌 Overview
-The **Pet Adoption System** is a Django-based REST API that allows users to adopt and return pets. It includes authentication, role-based access control (admin & users), and MySQL integration.
+A **Django REST API** for a pet adoption system with role-based authentication (admin & users), allowing users to adopt and return pets.
 
-## 🚀 Features
-- User authentication (Signup, Login, Logout, JWT Refresh)
-- Admin can add, update, and delete pet records
-- Users can view and adopt available pets
-- Adoption history tracking
-- Role-based access control
-- API testing using Pytest
-
----
-
-## 📂 Project Structure
-```
-pet_adoption_system/
-│── adoption/          # Main app (models, views, serializers, tests)
-│── pet_adoption_system/  # Django settings & URLs
-│── requirements.txt   # Dependencies
-│── pytest.ini         # Pytest config
-│── manage.py          # Django entry point
-```
+## **Features**
+✅ User authentication with JWT (Signup, Login, Logout, Refresh)  
+✅ Role-based access control (Admin & User)  
+✅ CRUD operations for pets (Admin only)  
+✅ Adoption & return of pets (Users only)  
+✅ MySQL database integration  
+✅ Automated testing with Pytest  
+✅ Code linting with Pylint  
+✅ Test coverage analysis with Pytest-Cov  
 
 ---
 
-## 🛠️ Installation & Setup
-
-### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/your-username/pet_adoption_system.git
+## **Installation**
+### **1. Clone the Repository**
+```sh
+git clone https://github.com/yourusername/pet_adoption_system.git
 cd pet_adoption_system
 ```
 
-### 2️⃣ Set Up Virtual Environment
-```bash
+### **2. Create and Activate Virtual Environment**
+```sh
 python -m venv venv
 source venv/bin/activate  # macOS/Linux
-venv\Scripts\activate     # Windows
+venv\Scripts\activate  # Windows
 ```
 
-### 3️⃣ Install Dependencies
-```bash
+### **3. Install Dependencies**
+```sh
 pip install -r requirements.txt
 ```
 
-### 4️⃣ Configure Environment Variables
-Create a `.env` file and add the following:
+### **4. Configure MySQL Database**
+Update `.env` with your **MySQL credentials**:
 ```ini
+DB_NAME=your_database_name
+DB_USER=your_mysql_user
+DB_PASSWORD=your_mysql_password
+DB_HOST=localhost
+DB_PORT=3306
 SECRET_KEY=your_secret_key
-DEBUG=True
-DATABASE_URL=mysql://username:password@localhost:3306/pet_adoption_db
 ```
 
-### 5️⃣ Apply Database Migrations
-```bash
+### **5. Apply Migrations**
+```sh
 python manage.py migrate
+python manage.py createsuperuser  # Create admin user
 ```
 
-### 6️⃣ Create Superuser (Admin)
-```bash
-python manage.py createsuperuser
-```
-
-### 7️⃣ Run the Server
-```bash
+### **6. Run the Development Server**
+```sh
 python manage.py runserver
 ```
-The API will be available at: `http://127.0.0.1:8000/`
+Access API docs at: `http://127.0.0.1:8000/swagger/`
 
 ---
 
-## 🔑 Authentication Endpoints
-| Method | Endpoint         | Description |
-|--------|-----------------|-------------|
-| POST   | `/auth/signup/`  | Register a new user |
-| POST   | `/auth/login/`   | Get JWT access & refresh tokens |
-| POST   | `/auth/logout/`  | Logout user |
-| POST   | `/auth/refresh/` | Refresh JWT token |
+## **API Endpoints**
+### **Authentication**
+- `POST /auth/signup/` → Register user
+- `POST /auth/login/` → Get access & refresh tokens
+- `POST /auth/logout/` → Logout user
+- `POST /auth/refresh/` → Refresh token
+- `GET /auth/me/` → Get user details
+- `PUT /auth/me/` → Update user profile
 
-## 🐶 Pet Endpoints
-| Method | Endpoint               | Description |
-|--------|------------------------|-------------|
-| GET    | `/pets/`                | View all available pets |
-| POST   | `/pets/{id}/adopt/`     | Adopt a pet |
-| POST   | `/pets/{id}/return/`    | Return a pet |
-| GET    | `/pets/history/`        | View adoption history |
+### **Admin (Protected Routes)**
+- `POST /admin/pets/` → Add a pet
+- `PUT /admin/pets/{id}/` → Update pet details
+- `DELETE /admin/pets/{id}/` → Remove a pet
+- `GET /admin/pets/` → View all pets
+- `GET /admin/adoptions/` → View all adoptions
 
-## 🛠️ Admin Endpoints
-| Method | Endpoint            | Description |
-|--------|---------------------|-------------|
-| POST   | `/admin/pets/`      | Add a pet |
-| PUT    | `/admin/pets/{id}/` | Update pet details |
-| DELETE | `/admin/pets/{id}/` | Remove a pet |
-| GET    | `/admin/adoptions/` | View all adoption records |
+### **Users**
+- `GET /pets/` → View adoptable pets
+- `POST /pets/{id}/adopt/` → Adopt a pet
+- `POST /pets/{id}/return/` → Return a pet
+- `GET /pets/history/` → View adoption history
 
 ---
 
-## ✅ Running Tests
-Run **Pytest** to ensure everything works correctly:
-```bash
-pytest
+## **Code Quality & Linting**
+### **Run Pylint to Check Code Quality**
+```sh
+pylint adoption
+```
+### **Auto-fix Formatting with Black**
+```sh
+black .
 ```
 
 ---
 
-## 💡 Contributing
-1. Fork the repository
-2. Create a new branch: `git checkout -b feature-branch`
-3. Commit your changes: `git commit -m "Added new feature"`
-4. Push to the branch: `git push origin feature-branch`
-5. Open a Pull Request
+## **Testing & Coverage**
+### **Run Tests with Pytest**
+```sh
+pytest
+```
+### **Check Test Coverage**
+```sh
+pytest --cov=adoption --cov-report=term-missing
+```
+### **Generate HTML Coverage Report**
+```sh
+pytest --cov=adoption --cov-report=html
+open htmlcov/index.html  # macOS/Linux
+start htmlcov/index.html  # Windows
+```
+### **Enforce Minimum Coverage (Fail if <80%)**
+```sh
+pytest --cov=adoption --cov-fail-under=80
+```
 
 ---
+
+## **Contributing**
+1. **Fork** the repo
+2. **Create** a new branch (`git checkout -b feature-branch`)
+3. **Commit** your changes (`git commit -m "Add feature"`)
+4. **Push** to your branch (`git push origin feature-branch`)
+5. **Submit** a pull request
+
+---
+
+## **License**
+This project is licensed under the **MIT License**.
+
+---
+
+### 🚀 **Happy Coding!**
+
