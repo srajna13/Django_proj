@@ -10,3 +10,4 @@ Faker
 drf-yasg
 pylint 
 coverage
+python-decouple

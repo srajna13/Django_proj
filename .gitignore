@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+*.log
+
+# Django
+*.sqlite3
+db.sqlite3
+/media
+/staticfiles
+*.pot
+*.pyc
+local_settings.py
+
+# Environment variables
+.env
+
+# IDEs
+.vscode/
+.idea/
+
+# Virtualenv
+venv/
+ENV/
+env/
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+
+# Migrations
+**/migrations/*.py
+!**/migrations/__init__.py
