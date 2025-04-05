@@ -92,10 +92,22 @@ Use POST method with:
 }
 ```
 #### **Logout**
+Terminal:
 ```
 curl -X POST http://127.0.0.1:8000/api/auth/logout/ \
   -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
+Or open in browser:
+```
+http://localhost:8000/api/auth/logout/
+```
+**Response:**
+```json
+{
+  "message": "Logout successful",
+}
+```
+
 ### **User Endpoints** *(JWT Authentication Required)*
 
 #### **View All Adoptable Pets**
