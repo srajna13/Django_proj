@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -45,6 +45,7 @@ class LoginView(APIView):
             required=["username", "password"],
         )
     )
+
     def post(self, request):
         username = request.data.get("username")
         password = request.data.get("password")
@@ -60,6 +61,17 @@ class LoginView(APIView):
             }
         )
 
+class LogoutView(APIView):
+    # permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        try:
+            refresh_token = request.data.get("refresh")
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response({"message": "Logout successful"}, status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response({"error": "Invalid or missing refresh token"}, status=status.HTTP_400_BAD_REQUEST)
 
 class PetListView(generics.ListCreateAPIView):
     queryset = Pet.objects.all()
@@ -78,7 +90,7 @@ class AdoptionView(APIView):
         Adoption.objects.create(user=request.user, pet=pet)
         pet.available = False
         pet.save()
-        return Response({"message": "Pet adopted successfully!"})
+        return Response({"message": "Pet adopted successfully!"}, status=200)
 
 
 class AvailablePetsListView(generics.ListAPIView):
