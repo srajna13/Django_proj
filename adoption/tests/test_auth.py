@@ -25,7 +25,7 @@ def test_user_signup():
 @pytest.mark.django_db
 def test_user_login():
     user = User.objects.create_user(
-        username="testuser", email="testuser@example.com", password="testpass123"
+        username="testuser",password="testpass123"
     )
     client = APIClient()
 

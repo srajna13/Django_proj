@@ -22,8 +22,8 @@ def test_admin_can_add_pet():
     client.force_authenticate(user=admin)
 
     response = client.post(
-        "/api/admin/pets/",
-        {"name": "Buddy", "age": 3, "breed": "Golden Retriever", "available": True},
+        "/admin/adoption/pet/add",
+        {"name": "Buddy", "age": 3, "species": "Golden Retriever", "available": True},
         format="json",
     )
 
