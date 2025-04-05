@@ -4,14 +4,14 @@
 A **Django REST API** for a pet adoption system with role-based authentication (admin & users), allowing users to adopt and return pets.
 
 ## **Features**
-✅ User authentication with JWT (Signup, Login, Logout, Refresh)  
-✅ Role-based access control (Admin & User)  
-✅ CRUD operations for pets (Admin only)  
-✅ Adoption & return of pets (Users only)  
-✅ MySQL database integration  
-✅ Automated testing with Pytest  
-✅ Code linting with Pylint  
-✅ Test coverage analysis with Pytest-Cov  
+- User authentication with JWT (Signup, Login, Logout, Refresh)  
+- Role-based access control (Admin & User)  
+- CRUD operations for pets (Admin only)  
+- Adoption & return of pets (Users only)  
+- MySQL database integration  
+- Automated testing with Pytest  
+- Code linting with Pylint  
+- Test coverage analysis with Pytest-Cov  
 
 ---
 
