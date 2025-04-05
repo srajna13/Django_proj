@@ -1,7 +1,7 @@
 
 # Pet Adoption System
 
-A **Django REST API** for a pet adoption system with role-based authentication (admin & users), allowing users to adopt and return pets.
+A **Django REST API** for a pet adoption system with role-based authentication (admin & users), allowing users to adopt pets.
 
 ## **Features**
 - User authentication with JWT (Signup, Login, Logout, Refresh)  
@@ -51,35 +51,107 @@ python manage.py migrate
 python manage.py createsuperuser  # Create admin user
 ```
 
-### **6. Run the Development Server**
-```sh
-python manage.py runserver
-```
-Access API docs at: `http://127.0.0.1:8000/swagger/`
+The API will be available at http://127.0.0.1:8000
+
+To access admin panel, visit : http://127.0.0.1:8000/admin
 
 ---
 
 ## **API Endpoints**
-### **Authentication**
-- `POST /auth/signup/` → Register user
-- `POST /auth/login/` → Get access & refresh tokens
-- `POST /auth/logout/` → Logout user
-- `POST /auth/refresh/` → Refresh token
-- `GET /auth/me/` → Get user details
-- `PUT /auth/me/` → Update user profile
 
-### **Admin (Protected Routes)**
-- `POST /admin/pets/` → Add a pet
-- `PUT /admin/pets/{id}/` → Update pet details
-- `DELETE /admin/pets/{id}/` → Remove a pet
-- `GET /admin/pets/` → View all pets
-- `GET /admin/adoptions/` → View all adoptions
+### **Authentication Endpoints**
+#### **Sign Up (Direct URL Access)**
+Open in browser:
+```
+http://127.0.0.1:8000/api/signup/
+```
+Use POST method with:
+```json
+{
+  "username": "testuser",
+  "password": "testpass123"
+}
+```
+#### **Login (Direct URL Access)**
+Open in browser:
+```
+http://127.0.0.1:8000/api/login/
+```
+Use POST method with:
+```json
+{
+  "username": "testuser",
+  "password": "testpass123"
+}
+```
+**Response:**
+```json
+{
+  "access": "<ACCESS_TOKEN>",
+  "refresh": "<REFRESH_TOKEN>"
+}
+```
+#### **Logout**
+##### **Terminal**:
+```
+curl -X POST http://127.0.0.1:8000/api/auth/logout/ \
+  -H "Authorization: Bearer <REFRESH_TOKEN>"
+```
+##### **Or open in browser**:
+```
+http://localhost:8000/api/auth/logout/
+```
+Use POST method with:
+```json
+{
+  "refresh": "<REFRESH_TOKEN>"
+}
+```
+**Response:**
+```json
+{
+  "message": "Logout successful",
+}
+```
 
-### **Users**
-- `GET /pets/` → View adoptable pets
-- `POST /pets/{id}/adopt/` → Adopt a pet
-- `POST /pets/{id}/return/` → Return a pet
-- `GET /pets/history/` → View adoption history
+### **User Endpoints** *(JWT Authentication Required)*
+
+#### **View All Adoptable Pets**
+```
+curl -X GET http://127.0.0.1:8000/api/pets/ \
+  -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
+#### **Adopt a Pet**
+```
+curl -X POST http://127.0.0.1:8000/api/pets/<PET_ID>/adopt/ \
+  -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+---
+
+### **Admin Endpoints** *(Admin + JWT Authentication Required)*
+#### **Add a Pet**
+Open in browser
+```
+http://localhost:8000/admin/adoption/pet/add/
+
+```
+#### **Update Pet**
+```
+http://localhost:8000/admin/adoption/pet/<pet_id>/change/
+```
+#### **Delete a pet**
+```
+http://localhost:8000/admin/adoption/pet/<pet_id>/delete/
+```
+#### **View all pets**
+```
+http://localhost:8000/admin/adoption/pet/
+```
+#### **View all adoptions**
+```
+http://localhost:8000/admin/adoption/adoption/
+```
 
 ---
 
