@@ -92,14 +92,20 @@ Use POST method with:
 }
 ```
 #### **Logout**
-Terminal:
+##### **Terminal**:
 ```
 curl -X POST http://127.0.0.1:8000/api/auth/logout/ \
-  -H "Authorization: Bearer <ACCESS_TOKEN>"
+  -H "Authorization: Bearer <REFRESH_TOKEN>"
 ```
-Or open in browser:
+##### **Or open in browser**:
 ```
 http://localhost:8000/api/auth/logout/
+```
+Use POST method with:
+```json
+{
+  "refresh": "<REFRESH_TOKEN>"
+}
 ```
 **Response:**
 ```json
