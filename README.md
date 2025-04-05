@@ -1,7 +1,7 @@
 
 # Pet Adoption System
 
-A **Django REST API** for a pet adoption system with role-based authentication (admin & users), allowing users to adopt and return pets.
+A **Django REST API** for a pet adoption system with role-based authentication (admin & users), allowing users to adopt pets.
 
 ## **Features**
 - User authentication with JWT (Signup, Login, Logout, Refresh)  
