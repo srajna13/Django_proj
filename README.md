@@ -35,7 +35,7 @@ pip install -r requirements.txt
 ```
 
 ### **4. Configure MySQL Database**
-Update `.env` with your **MySQL credentials**:
+Update `.env` with your **MySQL and django credentials**:
 ```ini
 DB_NAME=your_database_name
 DB_USER=your_mysql_user
@@ -43,12 +43,20 @@ DB_PASSWORD=your_mysql_password
 DB_HOST=localhost
 DB_PORT=3306
 SECRET_KEY=your_secret_key
+
+
+DEBUG=True
 ```
 
 ### **5. Apply Migrations**
 ```sh
+python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser  # Create admin user
+```
+### **6. Run server**
+```sh
+python manage.py runserver
 ```
 
 The API will be available at http://127.0.0.1:8000
@@ -63,7 +71,7 @@ To access admin panel, visit : http://127.0.0.1:8000/admin
 #### **Sign Up (Direct URL Access)**
 Open in browser:
 ```
-http://127.0.0.1:8000/api/signup/
+http://127.0.0.1:8000/api/auth/signup/
 ```
 Use POST method with:
 ```json
@@ -75,7 +83,7 @@ Use POST method with:
 #### **Login (Direct URL Access)**
 Open in browser:
 ```
-http://127.0.0.1:8000/api/login/
+http://127.0.0.1:8000/api/auth/login/
 ```
 Use POST method with:
 ```json

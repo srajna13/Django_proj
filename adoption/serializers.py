@@ -11,10 +11,11 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ["id", "username", "email", "password", "role_display"]
 
     def create(self, validated_data):
-        validated_data["role"] = "user"
-
-        # default role
-        return super().create(validated_data)
+        password = validated_data.pop("password")
+        user = User(**validated_data)
+        user.set_password(password)  # 🔒 This hashes the password
+        user.save()
+        return user
 
 
 class PetSerializer(serializers.ModelSerializer):
